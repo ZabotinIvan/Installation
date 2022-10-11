@@ -4,12 +4,25 @@ import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) throws IOException {
+        String zip = "E:\\Games\\game\\saveGame\\";
+        String dat = "E:\\Games\\game\\saveGame\\";
+        GameProgress gameProgress = new GameProgress(100,10,1,1.5);
+        GameProgress gameProgress1 = new GameProgress(90,7,3,15);
+        GameProgress gameProgress2 = new GameProgress(70,3,10,30);
+
+        creatingFolders();
+        gameProgress.saveGame(gameProgress);
+        gameProgress1.saveGame(gameProgress1);
+        gameProgress2.saveGame(gameProgress2);
+        gameProgress.zipFiles(zip,dat);
+    }
+    static void  creatingFolders () throws IOException {
         StringBuilder stringBuilder = new StringBuilder();
-        File file = new File("Games");
-        File src = new File(file,"srs");
-        File res = new File(file,"res");
-        File saveGames = new File(file,"saveGames");
-        File temp = new File(file,"temp");
+        File game = new File("E:\\Games\\game");
+        File src = new File(game,"srs");
+        File res = new File(game,"res");
+        File saveGames = new File(game,"saveGames");
+        File temp = new File(game,"temp");
         File main = new File(src,"main");
         File test = new File(src,"test");
         File mainJava = new File(main,"Main.java");
@@ -19,7 +32,7 @@ public class Main {
         File icons = new File(res,"icons");
         File tempTxt = new File(temp,"temp.txt");
 
-        if (file.mkdir()) {
+        if (game.mkdir()) {
             stringBuilder.append("Каталог был создан \n");
         }else {
             stringBuilder.append("Каталог небыл создан \n");
@@ -100,9 +113,5 @@ public class Main {
         FileWriter fileWriter = new FileWriter(tempTxt);
         fileWriter.write(text);
         fileWriter.flush();
-
-
-
-
     }
 }
